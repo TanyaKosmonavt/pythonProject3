@@ -1,6 +1,6 @@
 from src.utils import load_5_operations_from_json, normalizing_date, censor_card, censor_bank
 
-test_file = "for_testing_utils.json"
+test_file = "tests/for_testing_utils.json"
 
 def test_normalizing_date():
     assert normalizing_date("2017-08-26T10:50:58.294041") == "26.08.2017"
@@ -10,15 +10,15 @@ def test_normalizing_date():
 
 
 def test_censor_card():
-    assert censor_card("Visa Gold 7756673469642839") == "Visa Gold 7756 67** **** 2839"
-    assert censor_card("Maestro 7810846596785568") == "Maestro 7810 84** **** 5568"
-    assert censor_card("МИР 1582474475547301") == "МИР 1582 47** **** 7301"
+    assert censor_card("Visa Gold 7756673469642765") == "Visa Gold 7756 67** **** 2765"
+    assert censor_card("Maestro 7810846596785552") == "Maestro 7810 84** **** 5552"
+    assert censor_card("МИР 1582474475540985") == "МИР 1582 47** **** 0985"
 
 
 def test_censor_bank():
-    assert censor_bank("Счет 12189246980267075758") == "Счет **5758"
-    assert censor_bank("Счет 95473010446151855633") == "Счет **5633"
-    assert censor_bank("Счет 15574304810835774010") == "Счет **4010"
+    assert censor_bank("Счет 12189246980267075657") == "Счет **5657"
+    assert censor_bank("Счет 95473010446151855505") == "Счет **5505"
+    assert censor_bank("Счет 15574304810835774222") == "Счет **4222"
 
 
 def test_load_5_operations_from_json():
